@@ -1,0 +1,45 @@
+---
+title: "Hello, Quarto"
+format: html
+---
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+import pandas as pd
+df = pd.read_csv('data.csv')
+```
+# Spezi Suesse Spread
+ers;gndlighnisdghfdth
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+import plotly.express as px
+
+var = "Spezi"
+gb = df.query("Typ == @var").groupby(by=["Suesse", "Fruchtfaktor", "Typ"])["Suesse"].agg("count").to_frame('Count').reset_index()
+
+fig = px.scatter(gb,
+                 x="Suesse",
+                 y="Fruchtfaktor",
+                 title="Spezis",
+                 size="Count",
+                 color="Count",
+                 color_continuous_scale=px.colors.sequential.Viridis,
+                 template="plotly_white")
+
+fig.update_layout(title=dict(font=dict(size=50), automargin=True, yref='paper'))
+fig.show(config=dict({'staticPlot':True}))
+```
+
+# Spezi & Cola Database
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+from itables import init_notebook_mode
+
+init_notebook_mode(all_interactive=True)
+df
+```
