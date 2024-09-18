@@ -1,5 +1,5 @@
 ---
-title: "Hello, Quarto"
+title: "The Spezi Project"
 format: html
 ---
 ```{python}
