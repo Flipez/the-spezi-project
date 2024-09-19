@@ -1,10 +1,27 @@
 ---
 title: "The Spezi Project"
 format: html
+execute:
+  echo: false
 ---
+A completely subjective test of different Spezi and Cola brands that I got my hands on. Let me now if one is missing!
+
+## Ratings
+
+Sweetness describes the taste and how sweet it tastes, how much sugar is noticeable and how sticky is the drink without directly refering the amount of sugar in the drink - __2.5 out of 5__ is my personal fav here.
+
+Fruityness describes how much fruit you can taste. __3 to 4 out of 5__ would be perfect for me in a Spezi.
+
+A Syntetic taste sometimes occours in different types and oftes is a bit bitter. __Less is better.__
+
+Depending on the type and also how it’s delivered, Fizz, which means how carbonated (carbon dioxide) the drink is, does vary a lot. For me __about 3 to 4__ would be best.
+
+Last but not least, Sugar is refering directly to the amount of sugar per 100ml and is recalculated to a scale of 1 to 5 while 1 being the drink with least sugar and 5 being the drink with most sugar in it.
+
+
+
 ```{python}
 #| code-fold: true
-#| code-summary: "Show the code"
 
 import plotly.express as px
 import pandas as pd
@@ -12,7 +29,8 @@ df = pd.read_csv('data.csv')
 ```
 
 ```{python}
-fig = px.bar(df.sort_values("Gesamtbewertung", ascending=False), x="Name", y="Gesamtbewertung", color="Typ", title="Long-Form Input")
+fig = px.bar(df.query("Typ == 'Spezi'").sort_values("Gesamtbewertung", ascending=False), x="Name", y="Gesamtbewertung", color="Typ", title="Long-Form Input")
+fig.update_layout(showlegend=False)
 fig.show()
 ```
 
@@ -25,29 +43,19 @@ fig.show()
 ers;gndlighnisdghfdth
 ```{python}
 #| code-fold: true
-#| code-summary: "Show the code"
 
-
-var = "Spezi"
-gb = df.query("Typ == @var").groupby(by=["Suesse", "Fruchtfaktor", "Typ"])["Suesse"].agg("count").to_frame('Count').reset_index()
-
-fig = px.scatter(gb,
-                 x="Suesse",
-                 y="Fruchtfaktor",
-                 title="Spezis",
-                 size="Count",
-                 color="Count",
-                 color_continuous_scale=px.colors.sequential.Viridis,
-                 template="plotly_white")
-
-fig.update_layout(title=dict(font=dict(size=50), automargin=True, yref='paper'))
-fig.show(config=dict({'staticPlot':True}))
+for i, row in df.query("Typ == 'Spezi'").iterrows():
+  fig = px.line_polar(row,
+                      r=[row["Suesse"], row["Fruchtfaktor"], row["Künstlichkeit"], row["Sprudelfaktor"], row["Zucker Skala"]],
+                      theta=["Suesse", "Fruchtfaktor", "Künstlichkeit", "Sprudelfaktor", "Zucker"],
+                      line_close=True)
+  fig.update_traces(fill='toself')
+  fig.show()
 ```
 
 # Spezi & Cola Database
 ```{python}
 #| code-fold: true
-#| code-summary: "Show the code"
 
 from itables import init_notebook_mode
 
