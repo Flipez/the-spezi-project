@@ -6,16 +6,27 @@ format: html
 #| code-fold: true
 #| code-summary: "Show the code"
 
+import plotly.express as px
 import pandas as pd
 df = pd.read_csv('data.csv')
 ```
+
+```{python}
+fig = px.bar(df.sort_values("Gesamtbewertung", ascending=False), x="Name", y="Gesamtbewertung", color="Typ", title="Long-Form Input")
+fig.show()
+```
+
+```{python}
+fig = px.density_heatmap(df, x="Suesse", y="Fruchtfaktor", facet_row="Zero", facet_col="Typ")
+fig.show()
+```
+
 # Spezi Suesse Spread
 ers;gndlighnisdghfdth
 ```{python}
 #| code-fold: true
 #| code-summary: "Show the code"
 
-import plotly.express as px
 
 var = "Spezi"
 gb = df.query("Typ == @var").groupby(by=["Suesse", "Fruchtfaktor", "Typ"])["Suesse"].agg("count").to_frame('Count').reset_index()
