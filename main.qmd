@@ -197,3 +197,79 @@ fig.update_layout(
 fig.update_polars(radialaxis=dict(range=[0, 5], tickfont=dict(size=10)))
 fig.show(config=config)
 ```
+
+# Changelog
+- 05.11.22
+  - added Eizbach Cryztal Cola
+  - added Penny Cola
+  - added afri cola ohne zucker
+  - added Gut und günstig Cola Zero
+  - added Gut und günstig Cola light
+  - added fritz kola super zero
+  - added Vita Cola Original zuckerfrei
+  - added sunfit Cola Mix
+  - added Pöllinger Cola Mix
+  - added Kuchlbauer Cola~Mix
+  - added Landbrauerei Cola-Mix
+  - added Bad Brambacher Cola Mix
+  - added Hoellen Sprudel Cubana
+  - added Almdudler Spezi
+  - added deit zuckerfrei Cola Mix
+  - added XXL Limonade Cola Mix
+- 10.06.22
+  - added Land L!mo - Thanks Marvin!
+  - added Frische Mische - Thanks Marvin!
+  - added Kuchlbauer Cola~Mix - Thanks Juliane!
+  - added Pöllinger Cola Mix - Thanks Juliane!
+  - added Landbrauerei Cola-Mix - Thanks Juliane!
+- 23.04.22
+  - added Gluggerla Cola-Mix
+  - added Nawinta Cola-Mix
+  - added Günni’s Cola-Mix
+  - added afri cola ohne zucker - Thanks Jochen!
+  - added now black cola
+  - added Jarritos Mexican Cola
+  - added Fentimans Curiosity Cola
+- 09.04.22
+  - added Adelholzener Cola Mix
+  - added Maisacher Cola-Mix
+  - added Paul Anderl’s Schwupp Cola-Mix
+  - added Petrusquelle Cola-Mix
+  - added Gut und günstig Cola Mix
+  - added ja! Cola-Mix
+  - updated sugar normalization from min 6.8 / max 11 to min 2.3 / max 12
+- 03.04.22
+  - added Paulaner Spezi Zero
+- 20.03.22
+  - added Eichbaum Braumeisters Cola-Mix - Thanks Jochen!
+  - added alwa Limo Cola-Mix - Thanks Jochen!
+  - added Teinacher Genuss Cola-Mix - Thanks Jochen!
+  - added Ensinger Cola-Mix Limonade - Thanks Jochen!
+- 19.03.22
+  - added Mezzo Mix zero
+  - added Freeway Mixx Max
+  - added Freeway Cola Zero
+  - changed Community Cola Zuckerfrei rating from 3 to 4
+- 18.03.22
+  - added Auer Cola Mix - Thanks Joshi!
+  - added Paul Anderl Cola-Mix
+- 13.03.22
+  - added ja! Cola
+  - added Freeway Cola
+  - added Springe Cola - Thanks Patrick!
+  - added Club Cola - Thanks Patrick!
+  - added Vita Cola - Thanks Patrick!
+
+- 06.03.22
+  - added Mio Mio Cola Zero
+  - added Coca Cola Zero
+  - added Coca Cola Zero koffeinfrei
+  - added Pepsi Max
+  - added Pepsi Light
+  - added Dr. Pepper Zero
+
+- 25.02.22
+  - added Gut & Günstig Cola
+  - added Döner Cola
+  - added The Real Cola by Booster
+  - added adfri cola
