@@ -198,6 +198,44 @@ fig.update_polars(radialaxis=dict(range=[0, 5], tickfont=dict(size=10)))
 fig.show(config=config)
 ```
 
+# Confirmed Missing
+
+List of Cola and Spezi that is already known to be missing. Some of them might be not available to me (yet), others are still in the pipeline.
+
+If you have access to one of the unavailable ones or know some that are missing from the list let me know!
+
+## Spezi
+
+| Name                    | Source |
+| ----------------------- | ------ |
+| Big Cola Mix            | Edeka  |
+| Rapp Spezi              | Rapp   |
+| Vita Cola Mix           | |
+
+## Cola
+
+| Name                            | Source                       |
+| ------------------------------- | ---------------------------- |
+| Big Cola                        | Edeka                        |
+| Coca-Cola Life                  | |
+| Coca-Cola Light                 | |
+| Freeway Cola Light              | Lidl                         |
+| Green Cola                      | |
+| Isis Bio Fresh Cola             | |
+| K-Classic Cola                  | | Kaufland                     |
+| Penny Cola                      | Penny                        |
+| Penny Cola Stevia               | Penny                        |
+| Premium Cola                    | Liebick Getränke Germering ? |
+| River Cola                      | Aldi Nord                    |
+| River Cola 0% Zucker            | Aldi Nord                    |
+| Royal Crown Cola                | |
+| Star Drink Cola                 | Netto Marken-Discount        |
+| Star Drink Cola Light           | Netto Marken-Discount        |
+| Topstar Cola                    | Aldi Sued                    |
+| Topstar Cola Light              | Aldi Sued                    |
+| Ubuntu Cola                     |  |
+| Vita Cola Pur                   |  |
+
 # Changelog
 - 05.11.22
   - added Eizbach Cryztal Cola
