@@ -65,6 +65,15 @@ The map shows all Spezi locations as they are written on the bottle or can.
 In most cases this refers to the brewing location.
 Sometimes, especially for larger companies, it is different (eg. location of the distribution headquarters).
 
+## Spezi & Cola Database
+```{python}
+#| code-fold: true
+
+from itables import init_notebook_mode
+
+init_notebook_mode(all_interactive=True)
+df[["Name", "Sweetness", "Fruityness", "Fizz", "Synthetic", "Rating"]]
+```
 
 ## Values
 _Sweetness_ describes the taste and how sweet it tastes, how much sugar is noticeable, and how sticky the drink is without directly referring to the amount of sugar in the drink - __2.5 out of 5__ is my personal fav here.
@@ -120,7 +129,7 @@ fig = px.density_heatmap(
   x="Sugar",
   y="Fruityness",
 )
-fig.update_coloraxes(showscale=False)
+#fig.update_coloraxes(showscale=False)
 fig.update_xaxes(dtick=1)
 fig.update_yaxes(dtick=1)
 fig.show(config=config)
@@ -187,14 +196,4 @@ fig.update_layout(
 )
 fig.update_polars(radialaxis=dict(range=[0, 5], tickfont=dict(size=10)))
 fig.show(config=config)
-```
-
-# Spezi & Cola Database
-```{python}
-#| code-fold: true
-
-from itables import init_notebook_mode
-
-init_notebook_mode(all_interactive=True)
-df[["Name", "Sweetness", "Fruityness", "Fizz", "Synthetic", "Rating"]]
 ```
