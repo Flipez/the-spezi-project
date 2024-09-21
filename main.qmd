@@ -1,56 +1,192 @@
 ---
-title: "The Spezi Project"
-format: html
+title: " "
+format:
+  html:
+    toc: true
 execute:
   echo: false
 ---
-A completely subjective test of different Spezi and Cola brands that I got my hands on. Let me now if one is missing!
 
-## Ratings
+![](./the-spezi-project.png){width=50% fig-align="center"}
 
-Sweetness describes the taste and how sweet it tastes, how much sugar is noticeable and how sticky is the drink without directly refering the amount of sugar in the drink - __2.5 out of 5__ is my personal fav here.
-
-Fruityness describes how much fruit you can taste. __3 to 4 out of 5__ would be perfect for me in a Spezi.
-
-A Syntetic taste sometimes occours in different types and oftes is a bit bitter. __Less is better.__
-
-Depending on the type and also how it’s delivered, Fizz, which means how carbonated (carbon dioxide) the drink is, does vary a lot. For me __about 3 to 4__ would be best.
-
-Last but not least, Sugar is refering directly to the amount of sugar per 100ml and is recalculated to a scale of 1 to 5 while 1 being the drink with least sugar and 5 being the drink with most sugar in it.
-
-
+# The Spezi Project
+A completely subjective test of different Spezi and Cola brands that I got my hands on. Let me know if one is missing!
 
 ```{python}
 #| code-fold: true
 
 import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+from plotly.subplots import make_subplots
 import pandas as pd
+import math
+
+config = {'staticPlot': True}
+
 df = pd.read_csv('data.csv')
 ```
 
 ```{python}
-fig = px.bar(df.query("Typ == 'Spezi'").sort_values("Gesamtbewertung", ascending=False), x="Name", y="Gesamtbewertung", color="Typ", title="Long-Form Input")
-fig.update_layout(showlegend=False)
+color_dict={
+  0: "#EF553B",
+  1: "#EF553B",
+  2: "#FECB52",
+  3: "#B6E880",
+  4: "#00CC96",
+  5: "#2CA02C"
+}
+color = df["Rating"].map(color_dict).fillna("white")
+
+fig = px.scatter_map(
+  df.query("Type == 'Spezi'"),
+  lat = "lat",
+  lon = "long",
+  hover_name = "Name",
+  hover_data = ["Rating", "Manufacturer"],
+)
+
+fig.update_layout(
+  map_style = "carto-positron-nolabels",
+  map = {
+          "center": {
+          "lat":50.9566626954365,
+          "lon":9.891571267180636
+        },
+        "zoom":4.7,
+        },
+)
+
+fig.update_traces(marker={'size': 10, 'color': color})
+fig.show(config=config)
+```
+
+The map shows all Spezi locations as they are written on the bottle or can.
+In most cases this refers to the brewing location.
+Sometimes, especially for larger companies, it is different (eg. location of the distribution headquarters).
+
+
+## Values
+_Sweetness_ describes the taste and how sweet it tastes, how much sugar is noticeable, and how sticky the drink is without directly referring to the amount of sugar in the drink - __2.5 out of 5__ is my personal fav here.
+
+_Fruitiness_ describes how much fruit you can taste. __3 to 4 out of 5__ would be perfect for me in a Spezi.
+
+A _Synthetic_ taste sometimes occurs in different types and is often a bit bitter. __Less is better.__
+
+Depending on the type and also how it’s delivered, _Fizz_, which means how carbonated (carbon dioxide) the drink is, does vary a lot. For me, __about 3 to 4__ would be best.
+
+Last but not least, _Sugar_ refers directly to the amount of sugar per 100 ml and is recalculated on a scale of 1 to 5, whith 1 being the drink with the least sugar and 5 being the drink with the most sugar in it.
+
+### Rating
+The _Rating_ of each drink is on a scale from __1 to 5__, 5 being the best.
+It directly indicates how well the drink tasted to me and might not relate to the other attributes.
+Having a good score in all other categories does not imply a good rating.
+
+
+## Top Spezi
+This is a generated list of all Spezi that scored a 4 or 5 in the final _Rating_.
+```{python}
+fig = px.histogram(
+  df.query("Type == 'Spezi' and Rating >= 4").sort_values(["Rating", "Name"], ascending=[True, False]),
+  y = "Name",
+  x = "Rating",
+  color_discrete_sequence = ["orange"]
+)
+fig.update_layout(yaxis_title=None)
+fig.update_layout(xaxis_title=None)
 fig.show()
 ```
 
+## Correlations
+It might be interesting to correlate some attributes to see if there are any patterns.
 ```{python}
-fig = px.density_heatmap(df, x="Suesse", y="Fruchtfaktor", facet_row="Zero", facet_col="Typ")
-fig.show()
+fig = px.density_heatmap(
+  df.query("Type == 'Spezi' and ~Zero"),
+  x="Sweetness",
+  y="Fruityness",
+  facet_col="Synthetic",
+  facet_row="Fizz",
+  category_orders={"Synthetic": [1,2,3,4,5], "Fizz": [5,4,3,2,1]}
+)
+fig.update_coloraxes(showscale=False)
+fig.show(config=config)
 ```
+Correlating them all at once is pretty overwhelming so let's reduce it two pairs of two for now.
 
-# Spezi Suesse Spread
-ers;gndlighnisdghfdth
+### Sweetness / Sugar Correlation
 ```{python}
-#| code-fold: true
+fig = px.density_heatmap(
+  df.query("Type == 'Spezi' and ~Zero"),
+  x="Sugar",
+  y="Fruityness",
+)
+fig.update_coloraxes(showscale=False)
+fig.update_xaxes(dtick=1)
+fig.update_yaxes(dtick=1)
+fig.show(config=config)
+```
+TODO
 
-for i, row in df.query("Typ == 'Spezi'").iterrows():
-  fig = px.line_polar(row,
-                      r=[row["Suesse"], row["Fruchtfaktor"], row["Künstlichkeit"], row["Sprudelfaktor"], row["Zucker Skala"]],
-                      theta=["Suesse", "Fruchtfaktor", "Künstlichkeit", "Sprudelfaktor", "Zucker"],
-                      line_close=True)
-  fig.update_traces(fill='toself')
-  fig.show()
+### Sweetness / Fruitiness Correlation
+```{python}
+fig = px.density_heatmap(
+  df.query("Type == 'Spezi' and ~Zero"),
+  x="Sweetness",
+  y="Fruityness",
+)
+fig.update_coloraxes(showscale=False)
+fig.update_xaxes(dtick=1)
+fig.update_yaxes(dtick=1)
+fig.show(config=config)
+```
+TODO
+
+### Individual Ratings
+
+```{python}
+
+spezi = df.query("Type == 'Spezi'")
+cols = 3
+rows = math.ceil(len(spezi.index)/cols)
+
+fig = make_subplots(
+  rows=rows,
+  cols=cols, 
+  specs=[[{'type': 'polar'}] * cols] * rows,
+  subplot_titles = spezi["Name"].tolist(),
+  vertical_spacing = 0.02
+)
+
+current_row = 1
+for index in range(0, len(spezi.index), cols):
+  for offset in range(cols):
+    if (index + offset) >= len(spezi.index):
+      break
+
+    fig.add_trace(
+      go.Scatterpolar(
+        #name=spezi.iloc[index+offset]["Name"],
+        r=[spezi.iloc[index+offset]["Sweetness"],
+           spezi.iloc[index+offset]["Rating"],
+           spezi.iloc[index+offset]["Fruityness"],
+           spezi.iloc[index+offset]["Fizz"],
+           spezi.iloc[index+offset]["Synthetic"]
+          ],
+        theta=["Sweetness", "Rating", "Fruityness", "Fizz", "Synthetic"],
+        fill='toself',
+        fillcolor=("rgba(99, 110, 250, 0.7)" if spezi.iloc[index+offset]["Zero"] else "rgba(255, 161, 90, 0.7)"),
+        line_color=("rgba(99, 110, 250, 0.7)" if spezi.iloc[index+offset]["Zero"] else "rgba(255, 161, 90, 0.7)")
+      ),
+      col = offset + 1,
+      row = current_row
+    )
+  current_row +=1
+fig.update_layout(
+  height=5000,
+  showlegend=False
+)
+fig.update_polars(radialaxis=dict(range=[0, 5], tickfont=dict(size=10)))
+fig.show(config=config)
 ```
 
 # Spezi & Cola Database
@@ -60,5 +196,5 @@ for i, row in df.query("Typ == 'Spezi'").iterrows():
 from itables import init_notebook_mode
 
 init_notebook_mode(all_interactive=True)
-df
+df[["Name", "Sweetness", "Fruityness", "Fizz", "Synthetic", "Rating"]]
 ```
