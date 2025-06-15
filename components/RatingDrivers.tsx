@@ -37,7 +37,7 @@ export default function RatingDrivers({ drinks }: { drinks: Drink[] }) {
           <XAxis
             type="number"
             domain={[0, 1]}
-            tickFormatter={(v) => v.toFixed(1)}
+            tickFormatter={(v) => (typeof v === "number" ? v.toFixed(1) : v)}
           />
           <YAxis
             dataKey="name"
@@ -45,7 +45,7 @@ export default function RatingDrivers({ drinks }: { drinks: Drink[] }) {
             width={110}
             tick={{ fontSize: 12 }}
           />
-          <Tooltip formatter={(v: number) => v.toFixed(2)} />
+          <Tooltip formatter={(v) => (typeof v === "number" ? v.toFixed(2) : v)} />
           <Bar dataKey="abs" fill="#ff8c00" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
