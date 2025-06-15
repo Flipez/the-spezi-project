@@ -3,10 +3,10 @@ import Papa from "papaparse";
 import fs from "fs";
 import path from "path";
 import { useMemo, useState } from "react";
-import dynamic from "next/dynamic";
 
 import DrinkTable     from "@/components/DrinkTable";
 import DrinkDetails   from "@/components/DrinkDetails";
+import { CsvDrink } from "@/types/csv-drink";
 
 /* Map lives on its own /map page, so no render here.
    If you still want a mini-map on the home page uncomment below.
@@ -60,7 +60,7 @@ export default function Home({ drinks }: Props) {
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
         {/* search always first */}
         <input
-          className="border rounded-sm px-2 py-1 flex-1 text-sm"
+          className="border rounded px-2 py-1 flex-1 text-sm"
           placeholder="Search drink or manufacturer…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -71,10 +71,10 @@ export default function Home({ drinks }: Props) {
           <label className="flex items-center gap-2">
             Type:
             <select
-              className="border rounded-sm p-1"
+              className="border rounded p-1"
               value={filterType}
               onChange={(e) =>
-                setFilterType(e.target.value as any)
+                setFilterType(e.target.value as "All" | "Cola" | "Spezi")
               }
             >
               <option value="All">All</option>
@@ -86,10 +86,10 @@ export default function Home({ drinks }: Props) {
           <label className="flex items-center gap-2">
             Sugar:
             <select
-              className="border rounded-sm p-1"
+              className="border rounded p-1"
               value={filterZero}
               onChange={(e) =>
-                setFilterZero(e.target.value as any)
+                setFilterZero(e.target.value as "All" | "Zero" | "Sugar")
               }
             >
               <option value="All">All</option>
@@ -166,7 +166,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const parsed = Papa.parse(csv, {
     header: true,
     skipEmptyLines: true,
-  }).data as any[];
+  }).data as CsvDrink[];
 
   const drinks = parsed.map((d) => ({
     ...d,

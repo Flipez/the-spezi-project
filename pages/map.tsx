@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 /* client-only wrapper */
 const DrinkMap = dynamic(() => import("@/components/DrinkMap"), { ssr: false });
 import type { Drink } from ".";            // reuse the type from index
+import { CsvDrink } from "@/types/csv-drink";
 
 export default function MapPage({ drinks }: { drinks: Drink[] }) {
   return (
@@ -18,7 +19,7 @@ export default function MapPage({ drinks }: { drinks: Drink[] }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const csv = fs.readFileSync(path.join(process.cwd(), "public", "drinks.csv"), "utf8");
-  const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true }).data as any[];
+  const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true }).data as CsvDrink[];
 
   // same mapper used in index.tsx
   const drinks = parsed.map((d) => ({

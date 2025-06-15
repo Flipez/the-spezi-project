@@ -16,12 +16,6 @@ export default function SugarRank({ drinks }: { drinks: Drink[] }) {
 
   if (data.length === 0) return null;          // nothing to show after filters
 
-  /* colour palette – two hues, one tint each */
-  const colours: Record<string, string> = {
-    Cola:  "#3b82f6",  // blue
-    Spezi: "#f97316",  // orange
-  };
-
   return (
     <div className="mt-10">
       <h3 className="text-xl font-semibold mb-2">
@@ -49,8 +43,7 @@ export default function SugarRank({ drinks }: { drinks: Drink[] }) {
           <YAxis domain={[0, 5]} />
           <Tooltip formatter={(v) => typeof v === "number" ? v.toFixed(2) : v}/>
           <Legend />
-          {data.map(({ label }) => {
-            const type = label.startsWith("Cola") ? "Cola" : "Spezi";
+          {data.map(({ }) => {
             return null;        // legend handled once; Bars below
           })}
           <Bar

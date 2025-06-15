@@ -5,6 +5,7 @@ import path from "path";
 import type { Drink } from ".";
 
 import dynamic from "next/dynamic";
+import { CsvDrink } from "@/types/csv-drink";
 
 /* client-only charts */
 const RatingDrivers         = dynamic(() => import("@/components/RatingDrivers"),         { ssr: false });
@@ -47,7 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const parsed = Papa.parse(csv, {
     header: true,
     skipEmptyLines: true,
-  }).data as any[];
+  }).data as CsvDrink[];
 
   const drinks = parsed.map((d) => ({
     ...d,
