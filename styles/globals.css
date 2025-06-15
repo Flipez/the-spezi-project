@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom global tweaks */
+html, body, #__next {
+  height: 100%;
+}
+
+.marker-cluster-small {
+  width: 16px;          /* ↓ from 40 px  */
+  height: 16px;
+  line-height: 16px;
+}
+
+.marker-cluster-medium {
+  width: 20px;          /* ↓ from 50 px  */
+  height: 20px;
+  line-height: 20px;
+}
+
+.marker-cluster-large {
+  width: 24px;          /* ↓ from 60 px  */
+  height: 24px;
+  line-height: 24px;
+}
+
+::selection { @apply bg-indigo-200; }
+
+body { scroll-behavior: smooth; }
+
+table th { @apply bg-gray-100/70 backdrop-blur; } /* sticky head option */
