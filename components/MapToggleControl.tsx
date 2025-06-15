@@ -28,7 +28,7 @@ export default function MapToggleControl({ mode, onClick }: Props) {
     root.render(
       <button
         onClick={onClick}
-        className="rounded bg-white/90 backdrop-blur px-3 py-1 text-sm shadow hover:bg-white"
+        className="rounded bg-white/90 backdrop-blur-sm px-3 py-1 text-sm shadow-sm hover:bg-white"
       >
         {mode === "points" ? "Heat-map" : "Markers"}
       </button>

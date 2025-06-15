@@ -24,7 +24,7 @@ export function RadarChartBundle({ drink }: { drink: Drink }) {
       width={420}
       height={300}
       data={data}
-      className="bg-white rounded shadow p-4"
+      className="bg-white rounded-sm shadow-sm p-4"
     >
       <PolarGrid />
       <PolarAngleAxis dataKey="subject" />

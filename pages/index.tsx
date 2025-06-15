@@ -60,7 +60,7 @@ export default function Home({ drinks }: Props) {
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
         {/* search always first */}
         <input
-          className="border rounded px-2 py-1 flex-1 text-sm"
+          className="border rounded-sm px-2 py-1 flex-1 text-sm"
           placeholder="Search drink or manufacturer…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -71,7 +71,7 @@ export default function Home({ drinks }: Props) {
           <label className="flex items-center gap-2">
             Type:
             <select
-              className="border rounded p-1"
+              className="border rounded-sm p-1"
               value={filterType}
               onChange={(e) =>
                 setFilterType(e.target.value as any)
@@ -86,7 +86,7 @@ export default function Home({ drinks }: Props) {
           <label className="flex items-center gap-2">
             Sugar:
             <select
-              className="border rounded p-1"
+              className="border rounded-sm p-1"
               value={filterZero}
               onChange={(e) =>
                 setFilterZero(e.target.value as any)

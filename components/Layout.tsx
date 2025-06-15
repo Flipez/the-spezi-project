@@ -16,13 +16,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       {/* header */}
-      <header className="bg-white shadow sticky top-0 z-50">
+      <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           {/* gradient-filled title */}
           <Link
             href="/"
             className="text-lg font-bold tracking-tight
-                       bg-gradient-to-b from-spezi-start to-spezi-end
+                       bg-linear-to-b from-spezi-start to-spezi-end
                        bg-clip-text text-transparent"
           >
             The&nbsp;Spezi&nbsp;Project

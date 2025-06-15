@@ -17,7 +17,7 @@ const CaffeineVsRating      = dynamic(() => import("@/components/CaffeineVsRatin
 export default function Insights({ drinks }: { drinks: Drink[] }) {
   /* helper to wrap each chart in a consistent card */
   const Card = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-white rounded shadow p-4">{children}</div>
+    <div className="bg-white rounded-sm shadow-sm p-4">{children}</div>
   );
 
   return (

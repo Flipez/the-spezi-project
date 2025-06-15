@@ -61,7 +61,7 @@ export default function DrinkTable({ drinks, onSelect, search, size = 10 }: Prop
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm border rounded-lg">
           <thead>
-            <tr className="bg-gray-100/60 backdrop-blur">
+            <tr className="bg-gray-100/60 backdrop-blur-sm">
               {cols.map((c) => (
                 <th
                   key={c.label}
@@ -107,7 +107,7 @@ export default function DrinkTable({ drinks, onSelect, search, size = 10 }: Prop
       {pageCount > 1 && (
         <div className="flex items-center gap-2 mt-4 justify-center">
           <button
-            className="px-2 py-1 border rounded disabled:opacity-40"
+            className="px-2 py-1 border rounded-sm disabled:opacity-40"
             disabled={page === 0}
             onClick={() => setPage((p) => p - 1)}
           >
@@ -126,7 +126,7 @@ export default function DrinkTable({ drinks, onSelect, search, size = 10 }: Prop
             </button>
           ))}
           <button
-            className="px-2 py-1 border rounded disabled:opacity-40"
+            className="px-2 py-1 border rounded-sm disabled:opacity-40"
             disabled={page === pageCount - 1}
             onClick={() => setPage((p) => p + 1)}
           >
