@@ -1,10 +1,11 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "plugins": ["@typescript-eslint"],
   "rules": {
-    /* choose one line: */
     "@typescript-eslint/ban-ts-comment": "warn"
-    /* or */
-    /* "@typescript-eslint/ban-ts-comment": "off" */
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import "leaflet.heat";
+import L from "leaflet";
 
 interface Props {
   points: Array<[number, number, number]>; // [lat, lng, weight]
@@ -18,9 +19,6 @@ export default function HeatLayer({
   const map = useMap();
 
   useEffect(() => {
-    // @ts-ignore – leaflet.heat adds L.heatLayer at runtime
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const layer = L.heatLayer(points, { radius, blur, max }).addTo(map);
 
     return () => {
