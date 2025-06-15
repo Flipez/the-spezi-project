@@ -51,7 +51,9 @@ export default function CaffeineVsRating({ drinks }: { drinks: Drink[] }) {
             name="Sugar (g/100ml)"
           />
           <Tooltip
-            formatter={(v, n) => (n === "Rating" ? v.toFixed(1) : v)}
+            formatter={(v, n) =>
+              n === "Rating" && typeof v === "number" ? v.toFixed(1) : v
+            }
           />
           <Legend />
           <Scatter name="Cola"  data={cola}  fill="#3b82f6" />

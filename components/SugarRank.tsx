@@ -47,7 +47,7 @@ export default function SugarRank({ drinks }: { drinks: Drink[] }) {
             textAnchor="end"
           />
           <YAxis domain={[0, 5]} />
-          <Tooltip formatter={(v: number) => v.toFixed(2)} />
+          <Tooltip formatter={(v) => typeof v === "number" ? v.toFixed(2) : v}/>
           <Legend />
           {data.map(({ label }) => {
             const type = label.startsWith("Cola") ? "Cola" : "Spezi";

@@ -53,8 +53,10 @@ export default function SweetSyntheticScatter({ drinks }: { drinks: Drink[] }) {
             domain={[1, 5]}
           />
           <Tooltip
-            formatter={(value: number, name) =>
-              name === "Rating" ? value.toFixed(1) : value
+            formatter={(value, name) =>
+              name === "Rating" && typeof value === "number"
+              ? value.toFixed(1)
+              : value
             }
           />
           <Legend />
