@@ -23,8 +23,6 @@ interface Props {
 }
 
 export default function DrinkMap({ drinks }: Props) {
-  if (typeof window === "undefined") return null;      // guard during SSR
-
   const [mode, setMode] = useState<"points" | "heat">("points");
   const toggle = () => setMode((m) => (m === "points" ? "heat" : "points"));
 
