@@ -22,7 +22,6 @@ const AttributeCorrelationHeatmap = dynamic(
   () => import('@/components/AttributeCorrelationHeatmap'),
   { ssr: false }
 );
-const TopRatedOverTime = dynamic(() => import('@/components/TopRatedOverTime'), { ssr: false });
 
 export default function Insights({ drinks }: { drinks: Drink[] }) {
   /* helper to wrap each chart in a consistent card */
@@ -64,9 +63,6 @@ export default function Insights({ drinks }: { drinks: Drink[] }) {
         </div>
         <Card>
           <AttributeCorrelationHeatmap drinks={drinks} />
-        </Card>
-        <Card>
-          <TopRatedOverTime drinks={drinks} />
         </Card>
       </div>
     </div>
