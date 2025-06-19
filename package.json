@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@changey/react-leaflet-markercluster": "^4.0.0-rc1",
     "@tailwindcss/typography": "^0.5.16",
     "classnames": "^2.5.1",
     "leaflet": "^1.9.4",
@@ -21,6 +20,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
+    "react-leaflet-markercluster": "5.0.0-rc.0",
     "recharts": "^2.15.3",
     "swr": "^2.3.3"
   },

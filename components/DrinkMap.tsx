@@ -11,10 +11,7 @@ import HeatLayer from "./HeatLayer";
 import MapToggleControl from "./MapToggleControl";
 
 /* cluster group only in browser */
-const MarkerClusterGroup = dynamic(
-  () => import("@changey/react-leaflet-markercluster").then((m) => m.default),
-  { ssr: false }
-);
+import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const colour = (r: number) => (r >= 4 ? "green" : r >= 3 ? "orange" : "red");
 
