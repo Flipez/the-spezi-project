@@ -5,6 +5,7 @@ import path from 'path';
 import type { Drink } from '.';
 
 import dynamic from 'next/dynamic';
+import { StarIcon, ChartBarIcon } from '@heroicons/react/24/solid';
 import { CsvDrink } from '@/types/csv-drink';
 
 /* client-only charts */
@@ -27,27 +28,36 @@ export default function Insights({ drinks }: { drinks: Drink[] }) {
 
   return (
     <div suppressHydrationWarning className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">Insights</h1>
+      <h1 className="text-2xl font-semibold mb-2">Insights & Trends</h1>
+      <p className="text-gray-600 mb-8 text-base">
+        Explore patterns, top-rated drinks, and more from the data.
+      </p>
 
-      <div className="grid gap-8 md:grid-cols-2 auto-rows-max">
-        <Card>
+      <div className="grid gap-6 md:grid-cols-2 auto-rows-max">
+        {/* Top Rated Drinks */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
           <RatingDrivers drinks={drinks} />
-        </Card>
-        <Card>
-          <SugarRank drinks={drinks} />
-        </Card>
-        <Card>
-          <SweetSyntheticScatter drinks={drinks} />
-        </Card>
-        <Card>
-          <AttributeRadarCompare drinks={drinks} />
-        </Card>
-        <Card>
+        </div>
+        {/* Sweetness Distribution */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
           <SugarHistogram drinks={drinks} />
-        </Card>
-        <Card>
+        </div>
+        {/* Sugar Ranking */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
+          <SugarRank drinks={drinks} />
+        </div>
+        {/* Sweetness vs. Synthetic Scatter */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
+          <SweetSyntheticScatter drinks={drinks} />
+        </div>
+        {/* Attribute Radar Compare */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
+          <AttributeRadarCompare drinks={drinks} />
+        </div>
+        {/* Caffeine vs Rating */}
+        <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
           <CaffeineVsRating drinks={drinks} />
-        </Card>
+        </div>
       </div>
     </div>
   );

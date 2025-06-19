@@ -21,10 +21,13 @@ export default function CaffeineVsRating({ drinks }: { drinks: Drink[] }) {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-2">Caffeine vs Overall Rating</h3>
-      <p className="text-sm mb-4">Bubble size = sugar (g / 100 ml). Hover dots for details.</p>
+      <h3 className="text-lg font-semibold mb-2">Caffeine Content vs Rating</h3>
+      <p className="text-sm mb-4">
+        Shows the relationship between caffeine content and overall rating. Bubble size indicates
+        sugar content. Hover dots for details.
+      </p>
 
-      <ResponsiveContainer width="100%" height={340}>
+      <ResponsiveContainer width="100%" height={300}>
         <ScatterChart margin={{ top: 10, right: 20, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis

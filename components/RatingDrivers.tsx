@@ -13,9 +13,12 @@ export default function RatingDrivers({ drinks }: { drinks: Drink[] }) {
     <div>
       <h3 className="text-lg font-semibold mb-2">Which attributes drive the rating?</h3>
 
-      <p className="text-sm mb-4">Bars show absolute Pearson r (higher = stronger relationship).</p>
+      <p className="text-sm mb-4">
+        Bars show the strength of the relationship between each attribute and the overall rating
+        (Pearson correlation). Higher = stronger influence.
+      </p>
 
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} layout="vertical" margin={{ left: 20, right: 30 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis

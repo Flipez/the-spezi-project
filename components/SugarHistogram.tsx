@@ -25,10 +25,14 @@ export default function SugarHistogram({ drinks }: { drinks: Drink[] }) {
   if (data.length === 0) return null;
 
   return (
-    <div className="mt-10">
+    <div>
       <h3 className="text-xl font-semibold mb-2">Sugar distribution (g / 100&nbsp;ml)</h3>
-      <ResponsiveContainer width="100%" height={260}>
-        <BarChart data={data} margin={{ top: 10, right: 20, bottom: 20 }}>
+      <p className="text-sm mb-4">
+        How much sugar is in each drink. Each bar shows how many drinks fall into each sugar level.
+        Dashed line ≈ typical soda.
+      </p>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={data} margin={{ top: 32, right: 20, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="bucket" label={{ value: 'g sugar', position: 'insideBottom', dy: 10 }} />
           <YAxis allowDecimals={false} />

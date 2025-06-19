@@ -18,16 +18,14 @@ export default function SweetSyntheticScatter({ drinks }: { drinks: Drink[] }) {
   if (drinks.length === 0) return null;
 
   return (
-    <div className="mt-10">
-      <h3 className="text-xl font-semibold mb-2">
-        Sweetness vs “Synthetic” — trade-off vs flavour score
-      </h3>
+    <div>
+      <h3 className="text-xl font-semibold mb-2">Sweetness vs Synthetic Taste</h3>
       <p className="text-sm mb-4 max-w-prose">
-        Each dot is a drink. X = Sweetness, Y = Synthetic/artificial after-taste. Bubble size =
-        Overall Rating (1-5). Hover for details.
+        Each dot is a drink. X-axis: Sweetness. Y-axis: Synthetic or artificial aftertaste. Bubble
+        size shows overall rating. Hover for details.
       </p>
 
-      <ResponsiveContainer width="100%" height={360}>
+      <ResponsiveContainer width="100%" height={300}>
         <ScatterChart margin={{ top: 10, right: 20, left: 0, bottom: 30 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis type="number" dataKey="Sweetness" name="Sweetness" domain={[0, 5]} tickCount={6} />

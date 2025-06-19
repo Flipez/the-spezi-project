@@ -28,8 +28,12 @@ export default function AttributeRadarCompare({ drinks }: { drinks: Drink[] }) {
   return (
     <>
       <h3 className="text-lg font-semibold mb-2">Cola vs Spezi profile</h3>
+      <p className="text-sm mb-4">
+        Compares the average profile of Cola and Spezi across sweetness, fruitiness, fizz, and
+        synthetic notes.
+      </p>
 
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="100%" height={300}>
         <RadarChart data={data} outerRadius="80%">
           <PolarGrid />
           <PolarAngleAxis dataKey="attr" />
