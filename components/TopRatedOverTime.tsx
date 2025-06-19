@@ -13,10 +13,30 @@ import {
 // This component assumes a 'Year' property on Drink. If you add such a property, this will work out of the box.
 // Otherwise, please specify how to extract year from your data.
 
-function groupByYear(): { year: number; avg: number; n: number }[] {
-  // Try to infer year from Name or another property if available
-  // For now, return empty array
-  return [];
+// Extend Drink locally to include optional Year property
+interface DrinkWithYear extends Drink {
+  Year?: number;
+}
+
+function hasYear(drink: Drink): drink is DrinkWithYear {
+  return (
+    typeof (drink as DrinkWithYear).Year === 'number' && !isNaN((drink as DrinkWithYear).Year!)
+  );
+}
+
+function groupByYear(drinks: Drink[]): { year: number; avg: number; n: number }[] {
+  const byYear: Record<number, { sum: number; n: number }> = {};
+  drinks.forEach((d) => {
+    if (hasYear(d)) {
+      const year = d.Year!;
+      if (!byYear[year]) byYear[year] = { sum: 0, n: 0 };
+      byYear[year].sum += d.Rating;
+      byYear[year].n += 1;
+    }
+  });
+  return Object.entries(byYear)
+    .map(([year, { sum, n }]) => ({ year: Number(year), avg: sum / n, n }))
+    .sort((a, b) => a.year - b.year);
 }
 
 export default function TopRatedOverTime({ drinks }: { drinks: Drink[] }) {
