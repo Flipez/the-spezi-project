@@ -102,47 +102,52 @@ export default function Home({ drinks }: Props) {
       />
 
       {/* ── About section ────────────────────────────────────────────── */}
-      <h1 className="text-3xl font-bold mt-10 mb-6">Drink Ratings</h1>
-
-      <section className="prose prose-neutral max-w-none text-sm md:text-base">
-        <p>
-          A completely <strong>subjective test</strong> of different Spezi and Cola brands I’ve been
-          able to track down.&nbsp;See something missing?—let me know!
-        </p>
-
-        <p>
-          The map shows each drink’s location as printed on the bottle or can.&nbsp; In most cases
-          that’s the brewing site; for larger companies it can be the distribution HQ instead.
-        </p>
-
-        <h3 id="values">Values</h3>
-        <ul>
-          <li>
-            <strong>Sweetness</strong> – how sweet and sticky it tastes.
-            <em> ~2.5 / 5 is my personal sweet-spot.</em>
-          </li>
-          <li>
-            <strong>Fruitiness</strong> – fruit impression.
-            <em> 3–4 is ideal for a Spezi.</em>
-          </li>
-          <li>
-            <strong>Synthetic</strong> – artificial / bitter notes.
-            <em> Lower is better.</em>
-          </li>
-          <li>
-            <strong>Fizz</strong> – carbonation intensity.
-            <em> 3–4 feels perfect.</em>
-          </li>
-          <li>
-            <strong>Sugar</strong> – real g / 100 ml, normalised 1 – 5.
-          </li>
-        </ul>
-
-        <p>
-          <strong>Rating</strong> is a straight 1 – 5 “tastes good to me”. A drink can score well on
-          attributes yet still feel lacklustre overall (or vice-versa).
-        </p>
-      </section>
+      <div className="border border-gray-200 rounded-xl bg-white/70 p-6 mt-10 shadow-sm max-w-3xl mx-auto">
+        <h2 className="text-xl font-semibold mb-4">About These Ratings</h2>
+        <div className="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <p className="mb-4 text-gray-700">
+              A completely <span className="font-semibold">subjective test</span> of different Spezi
+              and Cola brands I’ve been able to track down. See something missing? Let me know!
+            </p>
+            <p className="mb-4 text-gray-700">
+              The map shows each drink’s location as printed on the bottle or can. In most cases
+              that’s the brewing site; for larger companies it can be the distribution HQ instead.
+            </p>
+            <p className="mb-4 text-gray-700">
+              <span className="font-semibold">Rating</span> is a straight 1 – 5 “tastes good to me”.
+              A drink can score well on attributes yet still feel lacklustre overall (or
+              vice-versa).
+            </p>
+          </div>
+          <div>
+            <h3 className="font-medium text-gray-700 mb-2">Values</h3>
+            <ul className="list-disc pl-6 space-y-1 text-gray-700">
+              <li>
+                <span className="font-semibold text-gray-900">Sweetness</span> – how sweet and
+                sticky it tastes.{' '}
+                <span className="text-gray-500">~2.5/5 is my personal sweet-spot.</span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">Fruitiness</span> – fruit impression.{' '}
+                <span className="text-gray-500">3–4 is ideal for a Spezi.</span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">Synthetic</span> – artificial / bitter
+                notes. <span className="text-gray-500">Lower is better.</span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">Fizz</span> – carbonation intensity.{' '}
+                <span className="text-gray-500">3–4 feels perfect.</span>
+              </li>
+              <li>
+                <span className="font-semibold text-gray-900">Sugar</span> – real g / 100 ml,
+                normalised 1–5.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
