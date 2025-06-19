@@ -22,7 +22,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* gradient-filled title */}
           <Link
             href="/"
-            className="text-lg font-bold tracking-tight bg-linear-to-b from-spezi-start to-spezi-end bg-clip-text text-transparent"
+            className="text-xl font-extrabold tracking-tight font-sans"
+            style={{
+              color: '#232323',
+              fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
+              fontWeight: 800,
+            }}
           >
             The&nbsp;Spezi&nbsp;Project
           </Link>
