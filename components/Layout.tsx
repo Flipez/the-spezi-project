@@ -1,17 +1,17 @@
-import Link from "next/link";
-import classNames from "classnames";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import classNames from 'classnames';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const links = [
-  { href: "/",         label: "Home"     },
-  { href: "/map",      label: "Map"      },
-  { href: "/insights", label: "Insights" },
+  { href: '/', label: 'Home' },
+  { href: '/map', label: 'Map' },
+  { href: '/insights', label: 'Insights' },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
-  const { pathname }    = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
@@ -45,8 +45,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={classNames(
-                  "hover:text-spezi-600",
-                  pathname === href ? "font-semibold text-spezi-700" : "opacity-90"
+                  'hover:text-spezi-600',
+                  pathname === href ? 'font-semibold text-spezi-700' : 'opacity-90'
                 )}
               >
                 {label}

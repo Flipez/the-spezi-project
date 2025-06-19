@@ -1,12 +1,12 @@
-import { GetStaticProps } from "next";
-import Papa from "papaparse";
-import fs from "fs";
-import path from "path";
-import dynamic from "next/dynamic";
+import { GetStaticProps } from 'next';
+import Papa from 'papaparse';
+import fs from 'fs';
+import path from 'path';
+import dynamic from 'next/dynamic';
 /* client-only wrapper */
-const DrinkMap = dynamic(() => import("@/components/DrinkMap"), { ssr: false });
-import type { Drink } from ".";            // reuse the type from index
-import { CsvDrink } from "@/types/csv-drink";
+const DrinkMap = dynamic(() => import('@/components/DrinkMap'), { ssr: false });
+import type { Drink } from '.'; // reuse the type from index
+import { CsvDrink } from '@/types/csv-drink';
 
 export default function MapPage({ drinks }: { drinks: Drink[] }) {
   return (
@@ -18,13 +18,13 @@ export default function MapPage({ drinks }: { drinks: Drink[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const csv = fs.readFileSync(path.join(process.cwd(), "public", "drinks.csv"), "utf8");
+  const csv = fs.readFileSync(path.join(process.cwd(), 'public', 'drinks.csv'), 'utf8');
   const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true }).data as CsvDrink[];
 
   // same mapper used in index.tsx
   const drinks = parsed.map((d) => ({
     ...d,
-    Zero: d.Zero === "true",
+    Zero: d.Zero === 'true',
     lat: d.lat ? parseFloat(d.lat) : null,
     long: d.long ? parseFloat(d.long) : null,
     Sweetness: Number(d.Sweetness),

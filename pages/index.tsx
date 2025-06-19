@@ -1,12 +1,12 @@
-import { GetStaticProps } from "next";
-import Papa from "papaparse";
-import fs from "fs";
-import path from "path";
-import { useMemo, useState } from "react";
+import { GetStaticProps } from 'next';
+import Papa from 'papaparse';
+import fs from 'fs';
+import path from 'path';
+import { useMemo, useState } from 'react';
 
-import DrinkTable     from "@/components/DrinkTable";
-import DrinkDetails   from "@/components/DrinkDetails";
-import { CsvDrink } from "@/types/csv-drink";
+import DrinkTable from '@/components/DrinkTable';
+import DrinkDetails from '@/components/DrinkDetails';
+import { CsvDrink } from '@/types/csv-drink';
 
 /* Map lives on its own /map page, so no render here.
    If you still want a mini-map on the home page uncomment below.
@@ -36,26 +36,22 @@ interface Props {
 }
 
 export default function Home({ drinks }: Props) {
-  const [filterType, setFilterType] = useState<"All" | "Cola" | "Spezi">("All");
-  const [filterZero, setFilterZero] = useState<"All" | "Zero" | "Sugar">("All");
-  const [search,     setSearch]     = useState("");
-  const [selected,   setSelected]   = useState<Drink | null>(null);
+  const [filterType, setFilterType] = useState<'All' | 'Cola' | 'Spezi'>('All');
+  const [filterZero, setFilterZero] = useState<'All' | 'Zero' | 'Sugar'>('All');
+  const [search, setSearch] = useState('');
+  const [selected, setSelected] = useState<Drink | null>(null);
 
   /* apply filters */
   const filtered = useMemo(() => {
     return drinks.filter((d) => {
-      const okType =
-        filterType === "All" || d.Type === filterType;
-      const okSugar =
-        filterZero === "All" ||
-        (filterZero === "Zero" ? d.Zero : !d.Zero);
+      const okType = filterType === 'All' || d.Type === filterType;
+      const okSugar = filterZero === 'All' || (filterZero === 'Zero' ? d.Zero : !d.Zero);
       return okType && okSugar;
     });
   }, [drinks, filterType, filterZero]);
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto space-y-6">
-
       {/* ── Search + Filters bar ─────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
         {/* search always first */}
@@ -73,9 +69,7 @@ export default function Home({ drinks }: Props) {
             <select
               className="border rounded p-1"
               value={filterType}
-              onChange={(e) =>
-                setFilterType(e.target.value as "All" | "Cola" | "Spezi")
-              }
+              onChange={(e) => setFilterType(e.target.value as 'All' | 'Cola' | 'Spezi')}
             >
               <option value="All">All</option>
               <option value="Cola">Cola</option>
@@ -88,9 +82,7 @@ export default function Home({ drinks }: Props) {
             <select
               className="border rounded p-1"
               value={filterZero}
-              onChange={(e) =>
-                setFilterZero(e.target.value as "All" | "Zero" | "Sugar")
-              }
+              onChange={(e) => setFilterZero(e.target.value as 'All' | 'Zero' | 'Sugar')}
             >
               <option value="All">All</option>
               <option value="Zero">Sugar-free</option>
@@ -101,11 +93,7 @@ export default function Home({ drinks }: Props) {
       </div>
 
       {/* ── Table + Details ──────────────────────────────────────────── */}
-      <DrinkTable
-        drinks={filtered}
-        onSelect={setSelected}
-        search={search}
-      />
+      <DrinkTable drinks={filtered} onSelect={setSelected} search={search} />
 
       {selected && <DrinkDetails drink={selected} />}
 
@@ -114,15 +102,13 @@ export default function Home({ drinks }: Props) {
 
       <section className="prose prose-neutral max-w-none text-sm md:text-base">
         <p>
-          A completely <strong>subjective test</strong> of different Spezi and Cola
-          brands I’ve been able to track down.&nbsp;See something missing?—let me
-          know!
+          A completely <strong>subjective test</strong> of different Spezi and Cola brands I’ve been
+          able to track down.&nbsp;See something missing?—let me know!
         </p>
 
         <p>
-          The map shows each drink’s location as printed on the bottle or can.&nbsp;
-          In most cases that’s the brewing site; for larger companies it can be the
-          distribution HQ instead.
+          The map shows each drink’s location as printed on the bottle or can.&nbsp; In most cases
+          that’s the brewing site; for larger companies it can be the distribution HQ instead.
         </p>
 
         <h3 id="values">Values</h3>
@@ -149,9 +135,8 @@ export default function Home({ drinks }: Props) {
         </ul>
 
         <p>
-          <strong>Rating</strong> is a straight 1 – 5 “tastes good to me”.
-          A drink can score well on attributes yet still feel lacklustre overall
-          (or vice-versa).
+          <strong>Rating</strong> is a straight 1 – 5 “tastes good to me”. A drink can score well on
+          attributes yet still feel lacklustre overall (or vice-versa).
         </p>
       </section>
     </div>
@@ -159,10 +144,7 @@ export default function Home({ drinks }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const csv = fs.readFileSync(
-    path.join(process.cwd(), "public", "drinks.csv"),
-    "utf8"
-  );
+  const csv = fs.readFileSync(path.join(process.cwd(), 'public', 'drinks.csv'), 'utf8');
   const parsed = Papa.parse(csv, {
     header: true,
     skipEmptyLines: true,
@@ -170,7 +152,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const drinks = parsed.map((d) => ({
     ...d,
-    Zero: d.Zero === "true",
+    Zero: d.Zero === 'true',
     lat: d.lat ? parseFloat(d.lat) : null,
     long: d.long ? parseFloat(d.long) : null,
     Sweetness: Number(d.Sweetness),

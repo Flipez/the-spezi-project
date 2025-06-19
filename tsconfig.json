@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",                 // <-- NEW
-    "paths": { "@/*": ["./*"] },    // <-- NEW
+    "baseUrl": ".", // <-- NEW
+    "paths": { "@/*": ["./*"] }, // <-- NEW
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

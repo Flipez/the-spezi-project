@@ -1,4 +1,4 @@
-import { Drink } from "@/pages";
+import { Drink } from '@/pages';
 import {
   BarChart,
   Bar,
@@ -8,7 +8,7 @@ import {
   CartesianGrid,
   ReferenceLine,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
 
 export default function SugarHistogram({ drinks }: { drinks: Drink[] }) {
   /* bin sugar into 1-g buckets */
@@ -26,16 +26,11 @@ export default function SugarHistogram({ drinks }: { drinks: Drink[] }) {
 
   return (
     <div className="mt-10">
-      <h3 className="text-xl font-semibold mb-2">
-        Sugar distribution (g / 100&nbsp;ml)
-      </h3>
+      <h3 className="text-xl font-semibold mb-2">Sugar distribution (g / 100&nbsp;ml)</h3>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} margin={{ top: 10, right: 20, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="bucket"
-            label={{ value: "g sugar", position: "insideBottom", dy: 10 }}
-          />
+          <XAxis dataKey="bucket" label={{ value: 'g sugar', position: 'insideBottom', dy: 10 }} />
           <YAxis allowDecimals={false} />
           <Tooltip />
           <ReferenceLine
@@ -43,10 +38,10 @@ export default function SugarHistogram({ drinks }: { drinks: Drink[] }) {
             stroke="#ef4444"
             strokeDasharray="3 3"
             label={{
-              value: "≈ 9 g common soda",
-              position: "top",
+              value: '≈ 9 g common soda',
+              position: 'top',
               fontSize: 10,
-              fill: "#ef4444",
+              fill: '#ef4444',
             }}
           />
           <Bar dataKey="count" fill="#ff8c00" />

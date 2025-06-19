@@ -1,19 +1,23 @@
-import { GetStaticProps } from "next";
-import Papa from "papaparse";
-import fs from "fs";
-import path from "path";
-import type { Drink } from ".";
+import { GetStaticProps } from 'next';
+import Papa from 'papaparse';
+import fs from 'fs';
+import path from 'path';
+import type { Drink } from '.';
 
-import dynamic from "next/dynamic";
-import { CsvDrink } from "@/types/csv-drink";
+import dynamic from 'next/dynamic';
+import { CsvDrink } from '@/types/csv-drink';
 
 /* client-only charts */
-const RatingDrivers         = dynamic(() => import("@/components/RatingDrivers"),         { ssr: false });
-const SugarRank             = dynamic(() => import("@/components/SugarRank"),             { ssr: false });
-const SweetSyntheticScatter = dynamic(() => import("@/components/SweetSyntheticScatter"), { ssr: false });
-const AttributeRadarCompare = dynamic(() => import("@/components/AttributeRadarCompare"), { ssr: false });
-const SugarHistogram        = dynamic(() => import("@/components/SugarHistogram"),        { ssr: false });
-const CaffeineVsRating      = dynamic(() => import("@/components/CaffeineVsRating"),      { ssr: false });
+const RatingDrivers = dynamic(() => import('@/components/RatingDrivers'), { ssr: false });
+const SugarRank = dynamic(() => import('@/components/SugarRank'), { ssr: false });
+const SweetSyntheticScatter = dynamic(() => import('@/components/SweetSyntheticScatter'), {
+  ssr: false,
+});
+const AttributeRadarCompare = dynamic(() => import('@/components/AttributeRadarCompare'), {
+  ssr: false,
+});
+const SugarHistogram = dynamic(() => import('@/components/SugarHistogram'), { ssr: false });
+const CaffeineVsRating = dynamic(() => import('@/components/CaffeineVsRating'), { ssr: false });
 
 export default function Insights({ drinks }: { drinks: Drink[] }) {
   /* helper to wrap each chart in a consistent card */
@@ -22,29 +26,35 @@ export default function Insights({ drinks }: { drinks: Drink[] }) {
   );
 
   return (
-    <div
-      suppressHydrationWarning
-      className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto"
-    >
+    <div suppressHydrationWarning className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
       <h1 className="text-2xl font-semibold mb-6">Insights</h1>
 
       <div className="grid gap-8 md:grid-cols-2 auto-rows-max">
-        <Card><RatingDrivers         drinks={drinks} /></Card>
-        <Card><SugarRank             drinks={drinks} /></Card>
-        <Card><SweetSyntheticScatter drinks={drinks} /></Card>
-        <Card><AttributeRadarCompare drinks={drinks} /></Card>
-        <Card><SugarHistogram        drinks={drinks} /></Card>
-        <Card><CaffeineVsRating      drinks={drinks} /></Card>
+        <Card>
+          <RatingDrivers drinks={drinks} />
+        </Card>
+        <Card>
+          <SugarRank drinks={drinks} />
+        </Card>
+        <Card>
+          <SweetSyntheticScatter drinks={drinks} />
+        </Card>
+        <Card>
+          <AttributeRadarCompare drinks={drinks} />
+        </Card>
+        <Card>
+          <SugarHistogram drinks={drinks} />
+        </Card>
+        <Card>
+          <CaffeineVsRating drinks={drinks} />
+        </Card>
       </div>
     </div>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const csv = fs.readFileSync(
-    path.join(process.cwd(), "public", "drinks.csv"),
-    "utf8"
-  );
+  const csv = fs.readFileSync(path.join(process.cwd(), 'public', 'drinks.csv'), 'utf8');
   const parsed = Papa.parse(csv, {
     header: true,
     skipEmptyLines: true,
@@ -52,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const drinks = parsed.map((d) => ({
     ...d,
-    Zero: d.Zero === "true",
+    Zero: d.Zero === 'true',
     lat: d.lat ? parseFloat(d.lat) : null,
     long: d.long ? parseFloat(d.long) : null,
     Sweetness: Number(d.Sweetness),

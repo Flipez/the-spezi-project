@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useMap } from "react-leaflet";
-import "leaflet.heat";
-import L from "leaflet";
+import { useEffect } from 'react';
+import { useMap } from 'react-leaflet';
+import 'leaflet.heat';
+import L from 'leaflet';
 
 interface Props {
   points: Array<[number, number, number]>; // [lat, lng, weight]
@@ -10,12 +10,7 @@ interface Props {
   max?: number;
 }
 
-export default function HeatLayer({
-  points,
-  radius = 25,
-  blur = 15,
-  max = 5,
-}: Props) {
+export default function HeatLayer({ points, radius = 25, blur = 15, max = 5 }: Props) {
   const map = useMap();
 
   useEffect(() => {

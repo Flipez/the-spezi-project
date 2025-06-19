@@ -1,10 +1,9 @@
-import { Drink } from "@/pages";
-import dynamic from "next/dynamic";
+import { Drink } from '@/pages';
+import dynamic from 'next/dynamic';
 
 /* load recharts only in browser */
 const RadarChartBundle = dynamic(
-  () =>
-    import("./_RadarChartBundle").then((m) => m.RadarChartBundle),
+  () => import('./_RadarChartBundle').then((m) => m.RadarChartBundle),
   { ssr: false }
 );
 
@@ -17,13 +16,23 @@ export default function DrinkDetails({ drink }: { drink: Drink }) {
         <RadarChartBundle drink={drink} />
 
         <div className="space-y-1 text-sm">
-          <p><strong>Manufacturer:</strong> {drink.Manufacturer}</p>
-          <p><strong>Type:</strong> {drink.Type}</p>
-          <p><strong>Sugar-free:</strong> {drink.Zero ? "Yes" : "No"}</p>
+          <p>
+            <strong>Manufacturer:</strong> {drink.Manufacturer}
+          </p>
+          <p>
+            <strong>Type:</strong> {drink.Type}
+          </p>
+          <p>
+            <strong>Sugar-free:</strong> {drink.Zero ? 'Yes' : 'No'}
+          </p>
           {drink.Caffeine !== null && (
-            <p><strong>Caffeine (mg/100 ml):</strong> {drink.Caffeine}</p>
+            <p>
+              <strong>Caffeine (mg/100 ml):</strong> {drink.Caffeine}
+            </p>
           )}
-          <p><strong>Sugar (g/100 ml):</strong> {drink.Sugar}</p>
+          <p>
+            <strong>Sugar (g/100 ml):</strong> {drink.Sugar}
+          </p>
         </div>
       </div>
     </div>

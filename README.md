@@ -12,7 +12,7 @@ pnpm dev      # starts http://localhost:3000
 ## Deploying to Vercel
 
 1. Push this folder to GitHub/GitLab.
-2. In Vercel, **Import Project** → pick the repo → *Framework: Next.js*.
+2. In Vercel, **Import Project** → pick the repo → _Framework: Next.js_.
 3. Use the default build settings (`pnpm build` / `next build`).
 4. 🚀 Hit **Deploy**.
 
