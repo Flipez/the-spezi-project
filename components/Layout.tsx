@@ -7,6 +7,7 @@ const links = [
   { href: '/', label: 'Home' },
   { href: '/map', label: 'Map' },
   { href: '/insights', label: 'Insights' },
+  { href: '/changelog', label: 'Changelog' },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {

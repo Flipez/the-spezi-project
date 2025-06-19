@@ -19,6 +19,11 @@ const AttributeRadarCompare = dynamic(() => import('@/components/AttributeRadarC
 });
 const SugarHistogram = dynamic(() => import('@/components/SugarHistogram'), { ssr: false });
 const CaffeineVsRating = dynamic(() => import('@/components/CaffeineVsRating'), { ssr: false });
+const AttributeCorrelationHeatmap = dynamic(
+  () => import('@/components/AttributeCorrelationHeatmap'),
+  { ssr: false }
+);
+const TopRatedOverTime = dynamic(() => import('@/components/TopRatedOverTime'), { ssr: false });
 
 export default function Insights({ drinks }: { drinks: Drink[] }) {
   /* helper to wrap each chart in a consistent card */
@@ -58,6 +63,12 @@ export default function Insights({ drinks }: { drinks: Drink[] }) {
         <div className="border border-gray-200 rounded-xl bg-white/70 p-6 shadow-sm flex flex-col h-[420px]">
           <CaffeineVsRating drinks={drinks} />
         </div>
+        <Card>
+          <AttributeCorrelationHeatmap drinks={drinks} />
+        </Card>
+        <Card>
+          <TopRatedOverTime drinks={drinks} />
+        </Card>
       </div>
     </div>
   );
