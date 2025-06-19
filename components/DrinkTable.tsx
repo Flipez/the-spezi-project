@@ -49,7 +49,7 @@ export default function DrinkTable({
           !popoverRef.current.contains(e.target as Node)) ||
         (e instanceof KeyboardEvent && e.key === 'Escape')
       ) {
-        setSelected && setSelected(null);
+        if (setSelected) setSelected(null);
       }
     }
     document.addEventListener('mousedown', handle);

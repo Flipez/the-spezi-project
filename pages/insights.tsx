@@ -5,7 +5,6 @@ import path from 'path';
 import type { Drink } from '.';
 
 import dynamic from 'next/dynamic';
-import { StarIcon, ChartBarIcon } from '@heroicons/react/24/solid';
 import { CsvDrink } from '@/types/csv-drink';
 
 /* client-only charts */

@@ -18,9 +18,9 @@ function pearson(xs: number[], ys: number[]): number {
 }
 
 function calcCorrelationMatrix(drinks: Drink[]): CorrelationMatrix {
-  const matrix: CorrelationMatrix = {} as any;
+  const matrix: CorrelationMatrix = {} as CorrelationMatrix;
   for (const a of ATTRS) {
-    matrix[a] = {} as any;
+    matrix[a] = {} as Record<Attr, number>;
     const xs = drinks.map((d) => Number(d[a] ?? 0));
     for (const b of ATTRS) {
       const ys = drinks.map((d) => Number(d[b] ?? 0));

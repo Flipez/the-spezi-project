@@ -5,7 +5,6 @@ import path from 'path';
 import { useMemo, useState } from 'react';
 
 import DrinkTable from '@/components/DrinkTable';
-import DrinkDetails from '@/components/DrinkDetails';
 import { CsvDrink } from '@/types/csv-drink';
 
 /* Map lives on its own /map page, so no render here.

@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { Drink } from '@/pages';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import { useState, useMemo } from 'react';

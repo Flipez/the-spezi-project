@@ -1,15 +1,6 @@
 import { sugarStats } from '@/lib/sugarStats';
 import { Drink } from '@/pages';
-import {
-  BarChart,
-  Bar,
-  CartesianGrid,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 export default function SugarRank({ drinks }: { drinks: Drink[] }) {
   const data = sugarStats(drinks);
