@@ -16,20 +16,20 @@ export default function SugarRank({ drinks }: { drinks: Drink[] }) {
       </p>
 
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 30 }}>
+        <BarChart
+          data={data}
+          layout="vertical"
+          margin={{ top: 10, right: 30, left: 20, bottom: 10 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
-            dataKey="label"
+            type="number"
+            domain={[0, 5]}
             tick={{ fontSize: 12 }}
-            interval={0}
-            angle={-15}
-            textAnchor="end"
+            tickFormatter={(v) => (typeof v === 'number' ? v.toFixed(1) : v)}
           />
-          <YAxis domain={[0, 5]} />
+          <YAxis type="category" dataKey="label" width={60} tick={{ fontSize: 13 }} />
           <Tooltip formatter={(v) => (typeof v === 'number' ? v.toFixed(2) : v)} />
-          {data.map(({}) => {
-            return null; // legend handled once; Bars below
-          })}
           <Bar dataKey="avg" name="Average rating" fill="#ff8c00" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
