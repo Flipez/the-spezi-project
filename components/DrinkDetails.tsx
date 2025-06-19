@@ -12,10 +12,11 @@ export default function DrinkDetails({ drink }: { drink: Drink }) {
     <div className="my-6">
       <h2 className="text-2xl font-semibold mb-4">{drink.Name}</h2>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <RadarChartBundle drink={drink} />
-
-        <div className="space-y-1 text-sm">
+      <div className="flex flex-col md:flex-row md:items-stretch">
+        <div className="w-full md:w-[360px] flex justify-center px-2">
+          <RadarChartBundle drink={drink} />
+        </div>
+        <div className="space-y-1 text-sm flex-1 min-w-0 break-words overflow-x-auto md:pl-8">
           <p>
             <strong>Manufacturer:</strong> {drink.Manufacturer}
           </p>

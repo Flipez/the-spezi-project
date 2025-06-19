@@ -93,9 +93,13 @@ export default function Home({ drinks }: Props) {
       </div>
 
       {/* ── Table + Details ──────────────────────────────────────────── */}
-      <DrinkTable drinks={filtered} onSelect={setSelected} search={search} />
-
-      {selected && <DrinkDetails drink={selected} />}
+      <DrinkTable
+        drinks={filtered}
+        onSelect={setSelected}
+        search={search}
+        selected={selected}
+        setSelected={setSelected}
+      />
 
       {/* ── About section ────────────────────────────────────────────── */}
       <h1 className="text-3xl font-bold mt-10 mb-6">Drink Ratings</h1>

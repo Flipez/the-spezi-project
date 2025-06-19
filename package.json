@@ -13,6 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "classnames": "^2.5.1",
     "leaflet": "^1.9.4",

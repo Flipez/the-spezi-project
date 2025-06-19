@@ -12,13 +12,7 @@ export function RadarChartBundle({ drink }: { drink: Drink }) {
   ];
 
   return (
-    <RadarChart
-      outerRadius={120}
-      width={420}
-      height={300}
-      data={data}
-      className="bg-white rounded-sm shadow-sm p-4"
-    >
+    <RadarChart outerRadius={120} width={420} height={300} data={data}>
       <PolarGrid />
       <PolarAngleAxis dataKey="subject" />
       <PolarRadiusAxis angle={30} domain={[0, 5]} />
