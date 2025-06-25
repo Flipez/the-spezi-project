@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui;
+
+  --color-spezi-50: #fff7e6;
+  --color-spezi-100: #ffe5bf;
+  --color-spezi-200: #ffd089;
+  --color-spezi-300: #ffb951;
+  --color-spezi-400: #ffa327;
+  --color-spezi-500: #ff8c00;
+  --color-spezi-600: #f27000;
+  --color-spezi-700: #d75a00;
+  --color-spezi-800: #b94600;
+  --color-spezi-900: #953300;
+
+  --color-spezi-start: #ffb951;
+  --color-spezi-end: #ff8c00;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/* custom global tweaks */
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+.marker-cluster-small {
+  width: 16px; /* ↓ from 40 px  */
+  height: 16px;
+  line-height: 16px;
+}
+
+.marker-cluster-medium {
+  width: 20px; /* ↓ from 50 px  */
+  height: 20px;
+  line-height: 20px;
+}
+
+.marker-cluster-large {
+  width: 24px; /* ↓ from 60 px  */
+  height: 24px;
+  line-height: 24px;
+}
+
+::selection {
+  @apply bg-indigo-200;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+table th {
+  @apply bg-gray-100/70 backdrop-blur-sm;
+} /* sticky head option */
